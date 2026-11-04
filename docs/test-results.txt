@@ -1,0 +1,101 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> tvet-resource-portal@1.2.0 test
+> node --test --test-concurrency=1 test/*.test.js
+
+✔ Gemini adapter uses server-side headers, system instruction and conversation roles (3.383365ms)
+✔ Groq adapter sends chat-completion history and bounded output (0.55831ms)
+✔ automatic selection falls back on provider quota errors and labels the actual provider (0.589686ms)
+✔ explicit provider never silently switches, and missing/empty/error responses stay honest (1.166042ms)
+✔ stopped local database and file backup restores into a new directory (2456.489197ms)
+✔ catalogue CSV import handles quoted names, updates units and rolls back invalid rows (1217.224355ms)
+✔ Pesapal adapter authenticates and sends documented API 3 payloads (4.095523ms)
+✔ Pesapal adapter blocks missing credentials, bad provider responses and unsafe redirects (0.954157ms)
+Seeded 6 demonstration courses and 12 labelled sample PDFs. No user accounts were created.
+✔ public catalogue, filters, course and unit search work without login (2665.052277ms)
+✔ public metadata excludes storage keys and passwords (8.654021ms)
+✔ pagination and sort are bounded and SQL injection stays data (7.126263ms)
+✔ three-field registration creates account without verification and password gate protects checkout (13.169988ms)
+✔ existing contact details never sign in an existing account (44.582416ms)
+✔ returning student login works and staff portal rejects student accounts (51.868065ms)
+✔ CSRF and foreign-origin mutations are rejected (7.643471ms)
+✔ students cannot access admin APIs or change their own role (10.731636ms)
+✔ contact change requires current password (38.36017ms)
+✔ private paid files are inaccessible without purchase while limited previews and free PDFs work (12.76102ms)
+✔ server computes checkout prices and pending payment does not grant access (24.388307ms)
+✔ successful verified payment creates entitlement and receipt exactly once (62.426804ms)
+✔ forged callback parameters cannot grant access (24.775232ms)
+✔ mismatched provider amount, currency and merchant reference reject fulfillment (76.891874ms)
+✔ failed, delayed and reversed provider events have correct access behavior (49.834906ms)
+✔ duplicate purchase of an owned paper is rejected (52.094632ms)
+✔ the same unresolved order cannot be charged through duplicate checkout (93.495912ms)
+✔ free resource acquisition needs no payment provider and appears in library (18.483928ms)
+✔ bundle allocation totals exactly and overlapping cart items are blocked (45.459417ms)
+✔ profile, library, wishlist, cart, notifications and requests APIs render valid data (43.646896ms)
+✔ support tickets enforce ownership and staff replies notify the owner (19.558835ms)
+✔ notification targeting and per-user read state remain private (31.811541ms)
+✔ admins need explicit permissions and only super admin can create staff (89.643692ms)
+✔ super admin can create admin and the last super admin cannot be suspended (44.103203ms)
+✔ suspension revokes sessions and preserves order history; reactivation allows login (146.059575ms)
+✔ resource upload validates PDF, generates preview and replacement preserves purchases (132.687682ms)
+✔ PDF validation rejects invalid or encrypted content and preview is separately generated (90.55808ms)
+✔ closing a series removes public listings but preserves purchased access (46.844275ms)
+✔ deletion requires notice, sends buyer notices, blocks premature execution and preserves financial records (98.033636ms)
+✔ scheduled deletion cancellation preserves access and notifies buyers (58.511349ms)
+✔ unresolved paid orders prevent deletion scheduling (36.471591ms)
+✔ staff pages, exports, reports and taxonomy APIs return successful responses (67.646576ms)
+✔ password recovery uses a private outbox and single-use tokens that revoke sessions (153.236241ms)
+✔ SEO endpoints, security headers, health and public route shells work (27.309555ms)
+{"level":"error","method":"POST","path":"/api/account/checkout","status":500,"code":"Error"}
+✔ ambiguous payment submissions cannot silently create a second charge (20.504169ms)
+✔ notifications cannot be authored by students and branding uploads require super admin (6.430059ms)
+Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.
+✔ rasterized preview PDF contains no hidden original page text (76.059859ms)
+✔ all public, student and admin screens render against real API responses in a DOM harness (1311.330284ms)
+✔ IPN handling verifies provider status and is idempotent without a browser session (30.16869ms)
+✔ production authentication rate limit is active by default (88.411592ms)
+✔ AI configuration exposes provider names and limits, never API keys (1362.239573ms)
+✔ private AI conversations enforce ownership including against staff accounts (30.856644ms)
+✔ AI requires disclosure consent and records an answer with the actual provider (41.085565ms)
+✔ AI context is server-owned and excludes unrelated private chats (38.369011ms)
+{"level":"error","method":"POST","path":"/api/social/ai/conversations/edc582bb-053d-4389-9ae6-bb5be4b5c49e/messages","status":500,"code":"Error"}
+✔ AI failures preserve a failed question without fabricating an assistant answer (40.327959ms)
+✔ daily AI budget and busy-chat lease prevent concurrent or excessive charges (21.247263ms)
+✔ learners create course topics and replies with private contact fields excluded (33.115528ms)
+✔ only an author or moderator can mark a question solved (14.614424ms)
+✔ reports correlate replies to topics and only permitted staff can moderate (31.166633ms)
+✔ moderation can hide/restore replies and lock/unlock/hide topics, with audit history (54.753443ms)
+✔ suspended accounts cannot read or post in either chat centre (6.594403ms)
+✔ guide eligibility starts after profile/password setup and saves skip, previous and completion (79.422007ms)
+✔ new screens, bottom navigation, safe AI formatting and automatic guide render in a DOM harness (259.938904ms)
+✔ owners can delete private AI history and no other user is affected (8.728142ms)
+✔ local file storage keeps bytes private and rejects path traversal (11.070751ms)
+✔ Supabase storage adapter uploads privately and uses sixty-second signed access internally (2.685238ms)
+✔ owner checkout uses owner credentials and distinct IPN/callback routes (3.543092ms)
+✔ migration starts with subscriptions disabled so existing admins retain access (1589.467582ms)
+✔ only the super admin sets subscription amount, period and activation (17.084421ms)
+✔ unpaid admins lose management access but retain renewal, profile, notices and login (98.389529ms)
+✔ checkout snapshots the owner-set price and uses only the owner payment provider (51.432485ms)
+✔ verified payment grants one period and one receipt despite duplicate callbacks (50.499195ms)
+✔ early renewal extends the existing paid period without losing remaining days (26.500755ms)
+✔ fee changes preserve existing grants and already quoted orders (24.492813ms)
+✔ amount, currency and merchant-reference mismatches cannot activate subscriptions (44.961671ms)
+✔ failed or forged success parameters do not grant access; reversals revoke only their period (46.727353ms)
+✔ paper and subscription callback references cannot be mixed (15.992579ms)
+{"level":"error","method":"POST","path":"/api/subscriptions/checkout","status":500,"code":"Error"}
+✔ timeouts cannot create another charge and the super admin can recover the reference (34.729705ms)
+✔ expiry enforcement is request-time and disables privileged direct file access (25.498578ms)
+✔ renewing after expiry starts a fresh access period and reminders are idempotent (53.593229ms)
+{"level":"error","method":"POST","path":"/api/subscriptions/checkout","status":503,"code":"Error"}
+✔ disabling subscriptions restores assigned permissions; unavailable owner credentials prevent activation (14.428908ms)
+✔ owner Pesapal configuration never falls back to the paper-sales merchant (0.636805ms)
+✔ scheduled reconciliation confirms owner payments without a returning browser (33.240805ms)
+✔ subscription dashboard, owner controls and receipts render against real APIs (179.934307ms)
+ℹ tests 82
+ℹ suites 0
+ℹ pass 82
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17802.566513

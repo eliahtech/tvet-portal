@@ -1,0 +1,9 @@
+data
+.env
+.env.*
+test
+test-support
+docs
+coverage
+compose.yaml
+Dockerfile

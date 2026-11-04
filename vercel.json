@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "framework": null,
+  "functions": {
+    "api/index.js": {
+      "maxDuration": 60,
+      "includeFiles": "{db/**,public/**,node_modules/bootstrap/dist/**,node_modules/bootstrap-icons/font/**,node_modules/pdfjs-dist/standard_fonts/**,node_modules/pdfjs-dist/cmaps/**,node_modules/pdfjs-dist/wasm/**,node_modules/pdfjs-dist/build/**}"
+    }
+  },
+  "rewrites": [{ "source": "/(.*)", "destination": "/api/index" }],
+  "crons": [{ "path": "/api/cron/jobs", "schedule": "0 3 * * *" }]
+}

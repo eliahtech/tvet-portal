@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>__TITLE__</title>
+    <meta name="description" content="__DESCRIPTION__" />
+    <link rel="canonical" href="__CANONICAL__" />
+    <meta property="og:title" content="__TITLE__" />
+    <meta property="og:description" content="__DESCRIPTION__" />
+    <meta property="og:url" content="__CANONICAL__" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/vendor/icons/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="/assets/style.css?v=1.2.0" />
+    <script src="/assets/app.js?v=1.2.0" type="module"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div id="app">
+      <main class="container py-5">
+        <h1>TVET Study Hub</h1>
+        <p>
+          Find study resources for your next assessment. Browse papers by course
+          and unit, preview documents and keep your purchases in one place.
+        </p>
+        <a href="/resources">Browse papers</a>
+        <p id="loading" role="status">Loading your study space…</p>
+      </main>
+    </div>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <dialog id="modal" aria-labelledby="modal-title">
+      <div id="modal-body"></div>
+    </dialog>
+    <noscript
+      ><p>
+        This portal needs JavaScript for search, accounts and purchases. Please
+        enable it to continue.
+      </p></noscript
+    >
+  </body>
+</html>

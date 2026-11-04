@@ -1,0 +1,15 @@
+ALTER TABLE users ADD COLUMN profile_completed_at timestamptz;
+ALTER TABLE users ADD COLUMN tour_status text NOT NULL DEFAULT 'pending' CHECK(tour_status IN ('pending','in_progress','completed','skipped'));
+ALTER TABLE users ADD COLUMN tour_step integer NOT NULL DEFAULT 0 CHECK(tour_step BETWEEN 0 AND 5);
+UPDATE users SET profile_completed_at=now() WHERE role='student' AND password_hash IS NOT NULL;
+CREATE TABLE ai_conversations(id text PRIMARY KEY, user_id text NOT NULL REFERENCES users(id), title text NOT NULL, provider text NOT NULL DEFAULT 'auto' CHECK(provider IN ('auto','gemini','groq')), consent_at timestamptz, busy_token text, busy_until timestamptz, created_at timestamptz NOT NULL DEFAULT now(), updated_at timestamptz NOT NULL DEFAULT now());
+CREATE INDEX ai_conversations_owner ON ai_conversations(user_id,updated_at DESC);
+CREATE TABLE ai_messages(id text PRIMARY KEY, sequence_no bigint GENERATED ALWAYS AS IDENTITY, conversation_id text NOT NULL REFERENCES ai_conversations(id) ON DELETE CASCADE, role text NOT NULL CHECK(role IN ('user','assistant')), content text NOT NULL, state text NOT NULL DEFAULT 'complete' CHECK(state IN ('pending','complete','failed')), request_id text NOT NULL, provider text, model text, created_at timestamptz NOT NULL DEFAULT now(), UNIQUE(conversation_id,request_id,role));
+CREATE INDEX ai_messages_history ON ai_messages(conversation_id,created_at);
+CREATE TABLE ai_usage(user_id text REFERENCES users(id), day date NOT NULL, requests integer NOT NULL DEFAULT 0, PRIMARY KEY(user_id,day));
+CREATE TABLE discussion_threads(id text PRIMARY KEY, user_id text NOT NULL REFERENCES users(id), course_id text REFERENCES courses(id), title text NOT NULL, body text NOT NULL, kind text NOT NULL DEFAULT 'question' CHECK(kind IN ('question','discussion')), status text NOT NULL DEFAULT 'open' CHECK(status IN ('open','locked','hidden')), solved boolean NOT NULL DEFAULT false, moderation_reason text, created_at timestamptz NOT NULL DEFAULT now(), updated_at timestamptz NOT NULL DEFAULT now());
+CREATE INDEX discussion_threads_feed ON discussion_threads(status,course_id,updated_at DESC);
+CREATE TABLE discussion_replies(id text PRIMARY KEY, thread_id text NOT NULL REFERENCES discussion_threads(id), user_id text NOT NULL REFERENCES users(id), body text NOT NULL, hidden boolean NOT NULL DEFAULT false, moderation_reason text, created_at timestamptz NOT NULL DEFAULT now());
+CREATE INDEX discussion_replies_thread ON discussion_replies(thread_id,created_at);
+CREATE TABLE discussion_reports(id text PRIMARY KEY, reporter_id text NOT NULL REFERENCES users(id), thread_id text NOT NULL REFERENCES discussion_threads(id), reply_id text REFERENCES discussion_replies(id), reason text NOT NULL, state text NOT NULL DEFAULT 'open' CHECK(state IN ('open','resolved')), resolved_by text REFERENCES users(id), created_at timestamptz NOT NULL DEFAULT now(), resolved_at timestamptz);
+CREATE INDEX discussion_reports_open ON discussion_reports(state,created_at);
