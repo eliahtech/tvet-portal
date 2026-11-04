@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Document viewer | TVET Study Hub</title>
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/style.css" />
+    <script type="module" src="/assets/viewer.js"></script>
+  </head>
+  <body class="viewer-body">
+    <div class="viewer-toolbar">
+      <a class="text-white" href="/account/papers">← My Papers</a>
+      <div>
+        <button id="prev" aria-label="Previous page">Previous</button>
+        <span id="page-label" role="status">Loading…</span>
+        <button id="next" aria-label="Next page">Next</button>
+      </div>
+      <a id="download" class="text-white" hidden>Download</a>
+    </div>
+    <p id="viewer-status" class="text-center p-3" role="status">
+      Loading document…
+    </p>
+    <canvas id="pdf" class="pdf-canvas" aria-label="Document page"></canvas>
+  </body>
+</html>

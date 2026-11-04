@@ -1,0 +1,22 @@
+[Unit]
+Description=TVET resource portal
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=tvet
+Group=tvet
+WorkingDirectory=/opt/tvet-portal
+Environment=NODE_ENV=production
+EnvironmentFile=/etc/tvet-portal.env
+ExecStart=/usr/bin/node /opt/tvet-portal/src/server.js
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target
