@@ -12,7 +12,7 @@ The application includes the public catalogue, three-field registration, protect
 
 ## 1. Local setup
 
-Install Node.js 24 LTS (tested with Node 24.22.1). Node 22.13 or later is the minimum supported by the PDF dependency. Extract the project and open a terminal in its root.
+Install Node.js 26 LTS (tested with Node 26.13.0). `package.json` pins `engines.node` to `26.x`, which is also the setting Vercel reads to choose its runtime. Extract the project and open a terminal in its root.
 
 ```bash
 npm ci

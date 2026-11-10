@@ -493,3 +493,19 @@ export function createApp({
   });
   return app;
 }
+// Default export for serverless hosts such as Vercel: a request handler that
+// starts the database and application on first use, then reuses them.
+let booting;
+export default function handler(req, res) {
+  booting ??= import("./bootstrap.js").then((m) => m.boot());
+  booting.then(
+    ({ app }) => app(req, res),
+    (error) => {
+      booting = undefined;
+      console.error("Application startup failed:", error);
+      res.statusCode = 500;
+      res.setHeader("content-type", "text/plain; charset=utf-8");
+      res.end("Service temporarily unavailable.");
+    },
+  );
+}

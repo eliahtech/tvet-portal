@@ -4,7 +4,7 @@
 
 Use a persistent Node server with HTTPS, a private Supabase bucket and PostgreSQL. A small server should have sufficient memory for PDF parsing/rasterization; start with 2 GB available RAM for the application and adjust based on your actual documents/concurrency. Rendering runs in the application process, so keep administrative batches modest. This is a capacity starting point, not a measured load guarantee.
 
-1. Install Node 24, extract the source, run `npm ci`, and keep application files owned by a deployment user.
+1. Install Node 26, extract the source, run `npm ci`, and keep application files owned by a deployment user.
 2. Set the environment from `.env.example`; keep its permissions restricted. Use an actual HTTPS `APP_URL`. Configure PostgreSQL TLS with its trusted certificate chain, private Storage, Pesapal sandbox and SMTP.
 3. Run migrations, first-admin setup and runtime-role setup under the migration-owner connection as described in the README. Replace the runtime connection with the restricted role.
 4. Set `NODE_ENV=production`, `PORT=3000`, and `TRUST_PROXY=1` only when exactly one trusted reverse proxy is in front of Express. Prevent direct public access to the backend port. If your topology differs, set the actual count; do not blindly trust all forwarded addresses.
